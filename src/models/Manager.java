@@ -2,21 +2,21 @@ package models;
 
 public class Manager {
 
-	private Node<Integer> head;
+	private Node<String> root;
 	
-	public void add(Node<Integer> node){
-		if (head != null) {
-			Node<Integer> actual = head;
-			while(actual.getNextNode() != null){
-				actual = actual.getNextNode();
-			}
-			actual.setNextNode(node);
+	public Manager (Node<String> root){
+		this.root = root;
+	}
+	
+	public void addRoot(Node<String> actual, Node<String> node) throws Exception{
+		if (actual.getClass().getSimpleName().equalsIgnoreCase("NodeFather")) {
+			actual.addNode(node);
 		}else{
-			head = node;
+			throw new Exception("No se puede agregar hijo");
 		}
 	}
 
-	public Node<Integer> getHead() {
-		return head;
+	public Node<String> getRoot() {
+		return root;
 	}
 }
